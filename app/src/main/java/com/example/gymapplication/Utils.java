@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Utils {
     private  static ArrayList<Training> trainings;
+    private static ArrayList<Plan> plans;
 
     public static void initTrainings() {
         if (null == trainings) {
@@ -38,5 +39,16 @@ public class Utils {
 
     public static ArrayList<Training> getTrainings() {
         return trainings;
+    }
+
+    public static boolean addPlan(Plan plan) {
+        if (null == plans) {
+            plans = new ArrayList<>();
+        }
+        return plans.add(plan);
+    }
+
+    public static ArrayList<Plan> getPlans() {
+        return plans;
     }
 }
