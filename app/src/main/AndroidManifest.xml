@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Gym">
-        <activity android:name=".EditActivity"></activity>
+        <activity android:name=".WebsiteActivity"></activity>
+        <activity android:name=".EditActivity" />
         <activity android:name=".PlanActivity" />
         <activity android:name=".TrainingActivity" />
         <activity android:name=".AllTrainingsActivity" />

@@ -10,11 +10,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class EditActivity extends AppCompatActivity {
+public class EditActivity extends AppCompatActivity implements PlanAdapter.RemovePlan {
     private static final String TAG = "EditActivity";
+
+    @Override
+    public void onRemovePlanResult(Plan plan) {
+        if (Utils.removePlan(plan)) {
+            Toast.makeText(this, "Training removed from your plan.", Toast.LENGTH_SHORT).show();
+            adapter.setPlans(getPlansById(plan.getDay()));
+        }
+    }
 
     private TextView txtDay;
     private Button btnAddPlan;
@@ -30,6 +39,7 @@ public class EditActivity extends AppCompatActivity {
         initViews();
 
         adapter = new PlanAdapter(this);
+        adapter.setType("edit");
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -62,6 +72,13 @@ public class EditActivity extends AppCompatActivity {
             }
         }
         return plans;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, PlanActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     private void initViews() {
